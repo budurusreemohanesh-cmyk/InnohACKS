@@ -13,6 +13,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from '../../components/ui/accordion';
+import Terminal from '../../components/Terminal';
 
 // Hero Section
 const Hero = () => {
@@ -679,11 +680,23 @@ const CTASection = () => {
   );
 };
 
+// Terminal Section
+const TerminalSection = () => {
+  return (
+    <section className="py-12 relative z-20 -mt-20">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <Terminal />
+      </div>
+    </section>
+  );
+};
+
 // Main Home Component
 const Home = () => {
   return (
     <main className="relative">
       <Hero />
+      <TerminalSection />
       <WhyAttend />
       <Domains />
       <Timeline />
