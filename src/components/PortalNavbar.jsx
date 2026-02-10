@@ -35,7 +35,8 @@ const PortalNavbar = () => {
 
   const handleLogout = () => {
     logout();
-    navigate('/');
+    // Force a hard redirect to home to clear any protected route state and prevent race conditions
+    window.location.href = '/';
   };
 
   return (

@@ -82,7 +82,7 @@ const About = () => {
             <div className="card-glass p-6 text-center">
               <MapPin className="w-8 h-8 text-neon-purple mx-auto mb-3" />
               <h3 className="text-white font-semibold mb-1">Venue</h3>
-              <p className="text-gray-400">Tech University, Bangalore</p>
+              <p className="text-gray-400">SVCE Tirupati</p>
             </div>
             <div className="card-glass p-6 text-center">
               <Clock className="w-8 h-8 text-neon-pink mx-auto mb-3" />

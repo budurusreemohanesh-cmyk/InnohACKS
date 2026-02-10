@@ -83,6 +83,46 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
+  const register = async (formData) => {
+    try {
+      // Simulate API delay
+      await new Promise(resolve => setTimeout(resolve, 1500));
+
+      const mockUser = {
+        id: 'user_' + Date.now(),
+        email: formData.email,
+        name: `${formData.firstName} ${formData.lastName}`,
+        firstName: formData.firstName,
+        lastName: formData.lastName,
+        phone: formData.phone,
+        college: formData.college,
+        branch: formData.branch,
+        year: formData.year,
+        tshirtSize: formData.tshirtSize,
+        github: formData.github,
+        linkedin: formData.linkedin,
+        avatar: `https://api.dicebear.com/7.x/avataaars/svg?seed=${formData.email}`,
+        role: 'participant',
+        teamId: null,
+        registeredAt: new Date().toISOString(),
+        status: 'active'
+      };
+      
+      const mockToken = 'mock_jwt_token_' + Date.now();
+      
+      localStorage.setItem('innohacks_user', JSON.stringify(mockUser));
+      localStorage.setItem('innohacks_token', mockToken);
+      
+      setUser(mockUser);
+      setIsAuthenticated(true);
+      toast.success('Registration successful! Welcome to the portal.');
+      return { success: true };
+    } catch (error) {
+      toast.error('Registration failed. Please try again.');
+      return { success: false, error: error.message };
+    }
+  };
+
   const logout = () => {
     localStorage.removeItem('innohacks_user');
     localStorage.removeItem('innohacks_token');
@@ -104,6 +144,7 @@ export const AuthProvider = ({ children }) => {
     isLoading,
     login,
     signup,
+    register,
     logout,
     updateProfile,
   };

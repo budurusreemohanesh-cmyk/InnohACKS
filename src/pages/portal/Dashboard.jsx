@@ -154,7 +154,7 @@ const Dashboard = () => {
                 <MapPin className="w-5 h-5 text-neon-pink" />
                 <div>
                   <p className="text-white text-sm">Tech University</p>
-                  <p className="text-gray-500 text-xs">Bangalore, India</p>
+                  <p className="text-gray-500 text-xs">SVCE Tirupati, India</p>
                 </div>
               </div>
               <div className="flex items-center gap-3">

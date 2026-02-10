@@ -48,7 +48,7 @@ const Footer = () => {
                   <Code2 className="w-6 h-6 text-neon-cyan" />
                 </div>
               </div>
-              <span className="text-xl font-bold text-gradient">
+              <span className="text-xl font-bold text-gradient-brand">
                 InnoHacks 2.0
               </span>
             </Link>
@@ -117,7 +117,7 @@ const Footer = () => {
                 <span className="text-gray-400 text-sm">
                   Tech University Campus,<br />
                   Innovation Hub, Block C,<br />
-                  Bangalore, India - 560001
+                  SVCE Tirupati
                 </span>
               </li>
               <li className="flex items-center gap-3">

@@ -61,7 +61,7 @@ const Login = () => {
                 <Code2 className="w-8 h-8 text-neon-cyan" />
               </div>
             </div>
-            <span className="text-2xl font-bold text-gradient">InnoHacks 2.0</span>
+            <span className="text-2xl font-bold text-gradient-brand">InnoHacks 2.0</span>
           </Link>
         </div>
 
@@ -173,7 +173,7 @@ const Login = () => {
 
           <p className="text-center text-gray-400 text-sm mt-6">
             Don't have an account?{' '}
-            <Link to="/signup" className="text-neon-cyan hover:underline">
+            <Link to="/register" className="text-neon-cyan hover:underline">
               Sign up
             </Link>
           </p>

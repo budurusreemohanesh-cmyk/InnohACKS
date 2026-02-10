@@ -29,15 +29,15 @@ export const Logo = ({ className, ...props }) => {
 
       <defs>
         {/* Gradient for Left Bracket: Red (Top) to Blue (Bottom) */}
-        <linearGradient id="left-gradient" x1="0" y1="10" x2="0" y2="54" gradientUnits="userSpaceOnUse">
-          <stop offset="45%" stopColor="#EA4335" /> {/* Red */}
-          <stop offset="55%" stopColor="#2563EB" /> {/* Blue */}
+        <linearGradient id="left-gradient" x1="0" y1="0" x2="0" y2="64" gradientUnits="userSpaceOnUse">
+          <stop offset="0%" stopColor="#EA4335" /> {/* Brand Red */}
+          <stop offset="100%" stopColor="#4285F4" /> {/* Brand Blue */}
         </linearGradient>
 
         {/* Gradient for Right Bracket: Green (Top) to Yellow (Bottom) */}
-        <linearGradient id="right-gradient" x1="0" y1="10" x2="0" y2="54" gradientUnits="userSpaceOnUse">
-          <stop offset="45%" stopColor="#34A853" /> {/* Green */}
-          <stop offset="55%" stopColor="#FBBC04" /> {/* Yellow */}
+        <linearGradient id="right-gradient" x1="0" y1="0" x2="0" y2="64" gradientUnits="userSpaceOnUse">
+          <stop offset="0%" stopColor="#34A853" /> {/* Brand Green */}
+          <stop offset="100%" stopColor="#FBBC05" /> {/* Brand Yellow */}
         </linearGradient>
       </defs>
     </svg>

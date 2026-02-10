@@ -59,7 +59,7 @@ const Contact = () => {
     {
       icon: MapPin,
       title: 'Venue',
-      value: 'Tech University, Bangalore',
+      value: 'SVCE Tirupati',
       link: '#',
     },
     {

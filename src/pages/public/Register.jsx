@@ -18,9 +18,11 @@ import {
 } from '../../components/ui/select';
 import { Checkbox } from '../../components/ui/checkbox';
 import { toast } from 'sonner';
+import { useAuth } from '../../context/AuthContext';
 
 const Register = () => {
   const navigate = useNavigate();
+  const { register } = useAuth();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [formData, setFormData] = useState({
     firstName: '',
@@ -43,9 +45,36 @@ const Register = () => {
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
+  const handleDemoFill = () => {
+    setFormData({
+      firstName: 'Alex',
+      lastName: 'Chen',
+      email: 'alex.chen@university.edu',
+      phone: '+91 98765 43210',
+      college: 'Institute of Technology',
+      year: '3',
+      branch: 'Computer Science',
+      github: 'github.com/alxchen',
+      linkedin: 'linkedin.com/in/alxchen',
+      dietaryRestrictions: 'Vegetarian',
+      tshirtSize: 'M',
+      agreeToCode: true,
+      agreeToShare: true,
+    });
+    toast.info('Form filled with demo data');
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+    console.log('Form submitted', formData);
     
+    // Manual validation
+    if (!formData.firstName || !formData.lastName || !formData.email || !formData.phone || 
+        !formData.college || !formData.branch || !formData.year) {
+      toast.error('Please fill in all required fields');
+      return;
+    }
+
     if (!formData.agreeToCode) {
       toast.error('Please agree to the Code of Conduct');
       return;
@@ -53,11 +82,15 @@ const Register = () => {
 
     setIsSubmitting(true);
     
-    // Simulate API call
-    await new Promise(resolve => setTimeout(resolve, 2000));
+    const result = await register(formData);
     
-    toast.success('Registration successful! Welcome to InnoHacks 2.0!');
-    navigate('/login');
+    if (result.success) {
+      // Small delay to ensure state updates propagate
+      setTimeout(() => {
+        navigate('/portal/dashboard');
+      }, 100);
+    }
+    
     setIsSubmitting(false);
   };
 
@@ -68,10 +101,21 @@ const Register = () => {
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          className="text-center mb-12"
+          className="text-center mb-12 relative"
         >
+          <div className="absolute top-0 right-0 hidden md:block">
+            <Button 
+              variant="outline" 
+              size="sm" 
+              onClick={handleDemoFill}
+              className="text-xs border-white/10 text-gray-400 hover:text-white"
+            >
+              <Sparkles className="w-3 h-3 mr-1" />
+              Demo Fill
+            </Button>
+          </div>
           <h1 className="text-5xl sm:text-6xl font-bold mb-6">
-            Register for <span className="text-gradient">InnoHacks 2.0</span>
+            Register for <span className="text-gradient-brand">InnoHacks 2.0</span>
           </h1>
           <p className="text-xl text-gray-400 max-w-2xl mx-auto">
             Join 500+ innovators for 24 hours of coding, creativity, and collaboration
@@ -85,7 +129,7 @@ const Register = () => {
           transition={{ delay: 0.2 }}
           className="card-glass p-8"
         >
-          <form onSubmit={handleSubmit} className="space-y-8">
+          <form onSubmit={handleSubmit} className="space-y-8" noValidate>
             {/* Personal Information */}
             <div>
               <h2 className="text-xl font-semibold text-white mb-4 flex items-center gap-2">

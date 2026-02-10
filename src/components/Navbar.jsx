@@ -54,7 +54,7 @@ const Navbar = () => {
                 <Logo className="w-8 h-8" />
               </div>
             </div>
-            <span className="text-xl font-bold text-gradient hidden sm:block">
+            <span className="text-xl font-bold text-gradient-brand hidden sm:block">
               InnoHacks 2.0
             </span>
           </Link>
@@ -85,6 +85,14 @@ const Navbar = () => {
 
           {/* Right Section */}
           <div className="flex items-center gap-2">
+            {/* Terminal Toggle */}
+            <button
+              onClick={() => window.dispatchEvent(new CustomEvent('toggle-terminal'))}
+              className="hidden lg:block relative px-4 py-2 text-sm font-medium text-gray-400 hover:text-white transition-colors"
+            >
+              Terminal
+            </button>
+
             {isAuthenticated ? (
               <Link to="/portal">
                 <Button className="hidden sm:flex items-center gap-2 bg-gradient-to-r from-neon-cyan to-neon-blue hover:opacity-90">
@@ -143,6 +151,16 @@ const Navbar = () => {
                 </Link>
               ))}
               <div className="pt-4 border-t border-white/10 space-y-2">
+                <button
+                  onClick={() => {
+                    window.dispatchEvent(new CustomEvent('toggle-terminal'));
+                    setIsMobileMenuOpen(false);
+                  }}
+                  className="w-full text-left px-4 py-3 rounded-lg text-sm font-medium text-gray-400 hover:text-white hover:bg-white/5 transition-colors"
+                >
+                  Terminal
+                </button>
+                
                 {isAuthenticated ? (
                   <Link to="/portal" onClick={() => setIsMobileMenuOpen(false)}>
                     <Button className="w-full bg-gradient-to-r from-neon-cyan to-neon-blue">

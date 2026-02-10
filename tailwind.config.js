@@ -60,6 +60,12 @@ module.exports = {
           700: "#334155",
           600: "#475569",
         },
+        brand: {
+          red: "#EA4335",
+          blue: "#4285F4",
+          green: "#34A853",
+          yellow: "#FBBC05",
+        },
       },
       borderRadius: {
         xl: "calc(var(--radius) + 4px)",

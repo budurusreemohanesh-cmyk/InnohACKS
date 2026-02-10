@@ -1,17 +1,22 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Terminal as TerminalIcon, X, Minus, Square, ChevronRight } from 'lucide-react';
+import { Terminal as TerminalIcon } from 'lucide-react';
 
-export default function Terminal() {
+export default function Terminal({ isOpen, onClose }) {
   const [input, setInput] = useState('');
   const [history, setHistory] = useState([
     { type: 'response', html: "<span class='text-neon-cyan'>Welcome to InnoHack 2026 Terminal v2.0.0</span><br>Type <span class='text-yellow-400'>'help'</span> to see available commands or <span class='text-green-400'>'register'</span> to join." }
   ]);
   const [isMaximized, setIsMaximized] = useState(false);
-  const [isVisible, setIsVisible] = useState(true);
   
   const terminalBodyRef = useRef(null);
   const inputRef = useRef(null);
+
+  useEffect(() => {
+    if (isOpen && inputRef.current) {
+      setTimeout(() => inputRef.current?.focus(), 100);
+    }
+  }, [isOpen]);
 
   useEffect(() => {
     if (terminalBodyRef.current) {
@@ -42,10 +47,11 @@ export default function Terminal() {
           <br>  <span class='text-neon-purple'>tracks</span>    - List 2026 tracks
           <br>  <span class='text-green-400'>register</span>  - Registration link
           <br>  <span class='text-red-400'>clear</span>     - Clear terminal
-          <br>  <span class='text-blue-400'>whoami</span>    - Current user info`;
+          <br>  <span class='text-blue-400'>whoami</span>    - Current user info
+          <br>  <span class='text-gray-400'>exit</span>      - Close terminal`;
           break;
         case 'about':
-          response = 'InnoHack 2026 is the largest student-run hackathon in the region. 36 hours. 500+ hackers. Infinite possibilities.';
+          response = 'InnoHack 2026 is the largest student-run hackathon in the region. 24 hours. 500+ hackers. Infinite possibilities.';
           break;
         case 'tracks':
           response = `1. <span class='text-neon-cyan'>HealthTech</span>
@@ -82,9 +88,8 @@ export default function Terminal() {
           response = new Date().toString();
           break;
         case 'exit':
-          response = 'Closing session... (just kidding, stay a while!)';
-          setIsVisible(false);
-          setTimeout(() => setIsVisible(true), 2000); // Re-open for demo purposes
+          response = 'Closing session...';
+          setTimeout(onClose, 800); 
           break;
         default:
           response = `<span class='text-red-400'>zsh: command not found: ${commandText}</span>`;
@@ -99,76 +104,80 @@ export default function Terminal() {
     }
   };
 
-  if (!isVisible) return null;
-
   return (
-    <motion.div 
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      className={`w-full mx-auto font-mono text-sm shadow-2xl overflow-hidden border border-white/10 rounded-xl bg-black/80 backdrop-blur-xl ${isMaximized ? 'fixed inset-4 z-50 h-[calc(100vh-2rem)]' : 'relative h-[400px] max-w-3xl my-12'}`}
-      onClick={handleContainerClick}
-    >
-      {/* Title Bar */}
-      <div className="flex items-center justify-between px-4 py-2 bg-white/5 border-b border-white/10 select-none cursor-grab active:cursor-grabbing">
-        <div className="flex items-center gap-2">
-          <TerminalIcon className="w-4 h-4 text-neon-cyan" />
-          <span className="text-gray-400 text-xs">innohack_terminal -- -zsh -- 80x24</span>
-        </div>
-        <div className="flex items-center gap-2">
-          <button onClick={() => setIsVisible(false)} className="p-1 hover:bg-white/10 rounded-md transition-colors">
-            <Minus className="w-3 h-3 text-gray-400" />
-          </button>
-          <button onClick={() => setIsMaximized(!isMaximized)} className="p-1 hover:bg-white/10 rounded-md transition-colors">
-            <Square className="w-3 h-3 text-gray-400" />
-          </button>
-          <button onClick={() => setIsVisible(false)} className="p-1 hover:bg-red-500/20 rounded-md transition-colors group">
-            <X className="w-3 h-3 text-gray-400 group-hover:text-red-400" />
-          </button>
-        </div>
-      </div>
-
-      {/* Terminal Body */}
-      <div 
-        className="p-4 h-[calc(100%-40px)] overflow-y-auto scrollbar-thin scrollbar-thumb-white/20 scrollbar-track-transparent custom-scrollbar" 
-        ref={terminalBodyRef}
-      >
-        <div className="space-y-2">
-          {history.map((item, index) => (
-            item.type === 'command' ? (
-              <div key={index} className="flex items-center gap-2 text-gray-300">
-                <span className="text-neon-purple">➜</span>
-                <span className="text-neon-cyan">~</span>
-                <span>{item.text}</span>
+    <AnimatePresence>
+      {isOpen && (
+        <motion.div
+          initial={{ opacity: 0, scale: 0.95, y: 20 }}
+          animate={{ opacity: 1, scale: 1, y: 0 }}
+          exit={{ opacity: 0, scale: 0.95, y: 20 }}
+          transition={{ duration: 0.2 }}
+          className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm"
+          onClick={onClose}
+        >
+          <motion.div 
+            className={`w-full max-w-3xl bg-[#1e1e1e]/95 backdrop-blur-xl rounded-xl shadow-2xl border border-white/10 overflow-hidden ${isMaximized ? 'fixed inset-4 h-auto' : 'h-[500px]'}`}
+            onClick={(e) => e.stopPropagation()} 
+          >
+            {/* Mac-style Title Bar */}
+            <div className="flex items-center justify-between px-4 py-3 bg-[#2d2d2d] border-b border-black/50 select-none" onDoubleClick={() => setIsMaximized(!isMaximized)}>
+              <div className="flex items-center gap-2">
+                <button onClick={onClose} className="w-3 h-3 rounded-full bg-[#ff5f56] hover:bg-[#ff5f56]/80 transition-colors border border-[#e0443e]" title="Close" />
+                <button onClick={() => setIsMaximized(!isMaximized)} className="w-3 h-3 rounded-full bg-[#ffbd2e] hover:bg-[#ffbd2e]/80 transition-colors border border-[#dea123]" title="Minimize" />
+                <button onClick={() => setIsMaximized(!isMaximized)} className="w-3 h-3 rounded-full bg-[#27c93f] hover:bg-[#27c93f]/80 transition-colors border border-[#1aab29]" title="Maximize" />
               </div>
-            ) : (
-              <div 
-                key={index} 
-                className="text-gray-400 pl-6 leading-relaxed" 
-                dangerouslySetInnerHTML={{ __html: item.html }} 
-              />
-            )
-          ))}
-          
-          <div className="flex items-center gap-2 text-gray-300">
-            <span className="text-neon-purple">➜</span>
-            <span className="text-neon-cyan">~</span>
-            <div className="relative flex-1">
-              <input 
-                ref={inputRef}
-                type="text" 
-                value={input}
-                onChange={(e) => setInput(e.target.value)}
-                onKeyDown={handleKeyDown}
-                className="w-full bg-transparent border-none outline-none text-white placeholder-gray-600 focus:ring-0 p-0 m-0 h-6"
-                autoComplete="off" 
-                spellCheck="false" 
-                autoFocus 
-              />
-              {/* Blinking Cursor Simulation (optional, but input caret is usually enough) */}
+              <div className="flex items-center gap-2 text-gray-400 text-xs font-medium opacity-80">
+                <TerminalIcon className="w-3 h-3" />
+                <span>innohack_terminal -- -zsh -- 80x24</span>
+              </div>
+              <div className="w-14" /> {/* Spacer for centering */}
             </div>
-          </div>
-        </div>
-      </div>
-    </motion.div>
+
+            {/* Terminal Body */}
+            <div 
+              className="p-4 h-[calc(100%-44px)] overflow-y-auto font-mono text-sm" 
+              ref={terminalBodyRef}
+              onClick={handleContainerClick}
+            >
+              <div className="space-y-1">
+                {history.map((item, index) => (
+                  item.type === 'command' ? (
+                    <div key={index} className="flex items-center gap-2 text-gray-300 mt-2">
+                      <span className="text-neon-purple">➜</span>
+                      <span className="text-neon-cyan">~</span>
+                      <span>{item.text}</span>
+                    </div>
+                  ) : (
+                    <div 
+                      key={index} 
+                      className="text-gray-400 leading-relaxed break-words" 
+                      dangerouslySetInnerHTML={{ __html: item.html }} 
+                    />
+                  )
+                ))}
+                
+                <div className="flex items-center gap-2 text-gray-300 mt-2">
+                  <span className="text-neon-purple">➜</span>
+                  <span className="text-neon-cyan">~</span>
+                  <div className="relative flex-1">
+                    <input 
+                      ref={inputRef}
+                      type="text" 
+                      value={input}
+                      onChange={(e) => setInput(e.target.value)}
+                      onKeyDown={handleKeyDown}
+                      className="w-full bg-transparent border-none outline-none text-white focus:ring-0 p-0 m-0 h-6 caret-white"
+                      autoComplete="off" 
+                      spellCheck="false" 
+                      autoFocus 
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        </motion.div>
+      )}
+    </AnimatePresence>
   );
 }

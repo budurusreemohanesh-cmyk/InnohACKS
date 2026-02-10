@@ -54,19 +54,33 @@ const AnimatedPage = ({ children }) => (
   </motion.div>
 );
 
+import Terminal from './components/Terminal';
+
+import { Toaster } from './components/ui/sonner';
+
 function App() {
   const location = useLocation();
   const isPortalRoute = location.pathname.startsWith('/portal');
   const isAuthRoute = location.pathname === '/login' || location.pathname === '/signup';
+  const [isTerminalOpen, setIsTerminalOpen] = React.useState(false);
+
+  React.useEffect(() => {
+    const handleToggle = () => setIsTerminalOpen(prev => !prev);
+    window.addEventListener('toggle-terminal', handleToggle);
+    return () => window.removeEventListener('toggle-terminal', handleToggle);
+  }, []);
 
   return (
     <div className="min-h-screen bg-dark-900 text-white overflow-x-hidden">
       <ParticleBackground />
       <CursorGlow />
+      <Toaster />
       
-      {!isPortalRoute && !isAuthRoute && <Navbar />}
-      {(isPortalRoute || isAuthRoute) && <PortalNavbar />}
+      {!isPortalRoute && <Navbar />}
+      {isPortalRoute && <PortalNavbar />}
       
+      <Terminal isOpen={isTerminalOpen} onClose={() => setIsTerminalOpen(false)} />
+
       <AnimatePresence mode="wait">
         <Routes location={location} key={location.pathname}>
           {/* Public Routes */}

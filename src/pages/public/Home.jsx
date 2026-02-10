@@ -1,5 +1,5 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { useState } from 'react';
+import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { 
   Code2, Users, Trophy, Clock, Zap, Lightbulb, 
@@ -13,7 +13,6 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from '../../components/ui/accordion';
-import Terminal from '../../components/Terminal';
 
 // Hero Section
 const Hero = () => {
@@ -72,7 +71,7 @@ const Hero = () => {
           </div>
           <div className="flex items-center gap-2 text-gray-300">
             <MapPin className="w-5 h-5 text-neon-purple" />
-            <span>Tech University, Bangalore</span>
+            <span>SVCE Tirupati</span>
           </div>
         </motion.div>
 
@@ -299,25 +298,37 @@ const Domains = () => {
 };
 
 // Timeline Section
+// Timeline Section
 const Timeline = () => {
-  const events = [
-    { time: '08:00 AM', title: 'Registration & Check-in', day: 'Day 1' },
-    { time: '10:00 AM', title: 'Opening Ceremony', day: 'Day 1' },
-    { time: '11:00 AM', title: 'Hacking Begins!', day: 'Day 1' },
-    { time: '02:00 PM', title: 'Lunch Break', day: 'Day 1' },
-    { time: '04:00 PM', title: 'Workshop: AI/ML Basics', day: 'Day 1' },
-    { time: '08:00 PM', title: 'Dinner & Networking', day: 'Day 1' },
-    { time: '12:00 AM', title: 'Midnight Snack', day: 'Day 1' },
-    { time: '08:00 AM', title: 'Breakfast', day: 'Day 2' },
-    { time: '11:00 AM', title: 'Hacking Ends', day: 'Day 2' },
-    { time: '12:00 PM', title: 'Project Demos', day: 'Day 2' },
-    { time: '03:00 PM', title: 'Judging', day: 'Day 2' },
-    { time: '05:00 PM', title: 'Closing Ceremony', day: 'Day 2' },
+  const [activeDay, setActiveDay] = useState(1);
+
+  const days = [
+    { id: 1, label: 'Day 1', date: 'March 15' },
+    { id: 2, label: 'Day 2', date: 'March 16' },
   ];
 
+  const schedule = {
+    1: [
+      { time: '08:00 AM', title: 'Registration & Check-in', description: 'Get your badges, swag kits, and settle in properly.' },
+      { time: '10:00 AM', title: 'Opening Ceremony', description: 'Kickoff with keynote speakers and hackathon rules.' },
+      { time: '11:00 AM', title: 'Hacking Begins!', description: 'Start building! Mentors are available for guidance.' },
+      { time: '02:00 PM', title: 'Lunch Break', description: 'Fuel up with a catered lunch and network with peers.' },
+      { time: '04:00 PM', title: 'Workshop: AI/ML Basics', description: 'Learn the fundamentals of AI/ML integration.' },
+      { time: '08:00 PM', title: 'Dinner & Networking', description: 'Relax, eat, and meet other teams.' },
+    ],
+    2: [
+      { time: '12:00 AM', title: 'Midnight Snack', description: 'Late night refreshments to keep you going.' },
+      { time: '08:00 AM', title: 'Breakfast', description: 'Morning energy boost before the final sprint.' },
+      { time: '11:00 AM', title: 'Hacking Ends', description: 'Stop coding. Submission portal opens.' },
+      { time: '12:00 PM', title: 'Project Demos', description: 'Present your solution to the judges.' },
+      { time: '03:00 PM', title: 'Judging', description: 'Final evaluation period.' },
+      { time: '05:00 PM', title: 'Closing Ceremony', description: 'Winners announcement and prize distribution.' },
+    ]
+  };
+
   return (
-    <section className="py-24 relative">
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="py-24 relative overflow-hidden">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -328,35 +339,87 @@ const Timeline = () => {
             Event <span className="text-gradient">Timeline</span>
           </h2>
           <p className="text-gray-400 text-lg">
-            Your 24-hour journey of innovation
+            Follow the schedule to make the most of your 24 hours
           </p>
         </motion.div>
 
-        <div className="relative">
-          <div className="absolute left-4 sm:left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-neon-cyan via-neon-purple to-transparent" />
-          
-          {events.map((event, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, x: index % 2 === 0 ? -30 : 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.05 }}
-              className={`relative flex items-center gap-8 mb-8 ${
-                index % 2 === 0 ? 'sm:flex-row' : 'sm:flex-row-reverse'
+        {/* Day Tabs */}
+        <div className="flex justify-center gap-4 mb-12">
+          {days.map((day) => (
+            <button
+              key={day.id}
+              onClick={() => setActiveDay(day.id)}
+              className={`relative px-8 py-3 rounded-xl font-semibold transition-all duration-300 ${
+                activeDay === day.id
+                  ? 'text-white bg-gradient-to-r from-neon-cyan to-neon-blue shadow-lg shadow-neon-cyan/20'
+                  : 'text-gray-400 hover:text-white bg-white/5 hover:bg-white/10'
               }`}
             >
-              <div className={`flex-1 ${index % 2 === 0 ? 'sm:text-right' : 'sm:text-left'}`}>
-                <div className="card-glass p-4 inline-block">
-                  <span className="text-neon-cyan text-sm font-medium">{event.time}</span>
-                  <h3 className="text-white font-semibold">{event.title}</h3>
-                  <span className="text-gray-500 text-xs">{event.day}</span>
-                </div>
-              </div>
-              <div className="absolute left-4 sm:left-1/2 w-3 h-3 bg-neon-cyan rounded-full -translate-x-1/2 ring-4 ring-dark-900" />
-              <div className="flex-1 hidden sm:block" />
-            </motion.div>
+              <span className="relative z-10">{day.label}</span>
+              {activeDay === day.id && (
+                <motion.div
+                  layoutId="activeTab"
+                  className="absolute inset-0 rounded-xl bg-gradient-to-r from-neon-cyan to-neon-blue"
+                  transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+                />
+              )}
+            </button>
           ))}
+        </div>
+
+        {/* Timeline Events */}
+        <div className="relative min-h-[600px]">
+          {/* Central Line */}
+          <div className="absolute left-4 sm:left-1/2 top-0 bottom-0 w-px bg-white/10 hidden sm:block" />
+
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={activeDay}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.3 }}
+              className="space-y-8"
+            >
+              {schedule[activeDay].map((event, index) => (
+                <motion.div
+                  key={event.title}
+                  initial={{ opacity: 0, x: index % 2 === 0 ? -20 : 20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.1 }}
+                  className={`relative flex items-center gap-8 ${
+                    index % 2 === 0 ? 'sm:flex-row' : 'sm:flex-row-reverse'
+                  }`}
+                >
+                  {/* Content */}
+                  <div className={`flex-1 ${index % 2 === 0 ? 'sm:text-right' : 'sm:text-left'} pl-12 sm:pl-0`}>
+                    <div className="group relative inline-block text-left sm:text-inherit w-full sm:w-auto">
+                      <div className="card-glass p-6 hover:border-neon-cyan/50 transition-all duration-300 hover:shadow-[0_0_30px_rgba(6,182,212,0.15)] group-hover:-translate-y-1">
+                        <span className="inline-block px-3 py-1 rounded-full bg-neon-cyan/10 text-neon-cyan text-xs font-bold mb-2">
+                          {event.time}
+                        </span>
+                        <h3 className="text-xl font-bold text-white mb-2 group-hover:text-neon-cyan transition-colors">
+                          {event.title}
+                        </h3>
+                        <p className="text-gray-400 text-sm leading-relaxed">
+                          {event.description}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Dot */}
+                  <div className="absolute left-4 sm:left-1/2 w-4 h-4 bg-dark-900 border-2 border-neon-cyan rounded-full -translate-x-1/2 z-10 shadow-[0_0_10px_rgba(6,182,212,0.5)]">
+                    <div className="absolute inset-0 bg-neon-cyan rounded-full animate-ping opacity-20" />
+                  </div>
+
+                  {/* Empty Space for symmetrical layout */}
+                  <div className="flex-1 hidden sm:block" />
+                </motion.div>
+              ))}
+            </motion.div>
+          </AnimatePresence>
         </div>
       </div>
     </section>
@@ -413,26 +476,23 @@ const Prizes = () => {
 
         {/* Main Prizes */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
-          {prizes.map((prize, index) => (
+            {prizes.map((prize, index) => (
             <motion.div
               key={prize.place}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.1 }}
-              className={`relative ${prize.highlight ? 'md:-mt-4 md:mb-4' : ''}`}
+              className="relative group flex flex-col"
             >
-              <div className={`card-glass p-8 h-full ${prize.highlight ? 'border-neon-cyan/50 glow-cyan' : ''}`}>
-                {prize.highlight && (
-                  <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-4 py-1 bg-gradient-to-r from-neon-cyan to-neon-purple rounded-full text-xs font-medium text-white">
-                    Grand Prize
-                  </div>
-                )}
-                <div className="text-center">
-                  <Trophy className={`w-12 h-12 mx-auto mb-4 ${prize.highlight ? 'text-neon-cyan' : 'text-gray-400'}`} />
-                  <h3 className="text-xl font-semibold text-white mb-2">{prize.place}</h3>
-                  <div className={`text-4xl font-bold mb-4 ${prize.highlight ? 'text-gradient' : 'text-white'}`}>
-                    {prize.prize}
+              <div className={`card-glass p-8 flex-1 transition-all duration-300 hover:scale-105 hover:shadow-2xl ${prize.highlight ? 'border-neon-cyan/50 glow-cyan' : ''}`}>
+                <div className="text-center h-full flex flex-col justify-between">
+                  <div>
+                    <Trophy className={`w-12 h-12 mx-auto mb-4 ${prize.highlight ? 'text-neon-cyan' : 'text-gray-400'}`} />
+                    <h3 className="text-xl font-semibold text-white mb-2">{prize.place}</h3>
+                    <div className={`text-4xl font-bold mb-4 ${prize.highlight ? 'text-gradient' : 'text-white'}`}>
+                      {prize.prize}
+                    </div>
                   </div>
                   <ul className="space-y-2">
                     {prize.perks.map((perk) => (
@@ -458,7 +518,7 @@ const Prizes = () => {
           <h3 className="text-2xl font-semibold text-white mb-6 text-center">Track Prizes</h3>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {trackPrizes.map((track) => (
-              <div key={track.track} className="bg-white/5 rounded-xl p-4 text-center">
+              <div key={track.track} className="bg-white/5 rounded-xl p-4 text-center transition-all duration-300 hover:scale-105 hover:bg-white/10 cursor-pointer">
                 <div className="text-neon-cyan font-bold text-xl">{track.prize}</div>
                 <div className="text-gray-400 text-sm">{track.track}</div>
               </div>
@@ -499,9 +559,9 @@ const Sponsors = () => {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl sm:text-5xl font-bold mb-4">
-            Our <span className="text-gradient">Sponsors</span>
-          </h2>
+          <h1 className="text-5xl md:text-7xl font-bold mb-6">
+          <span className="text-gradient-brand">InnoHacks 2.0</span>
+        </h1>
           <p className="text-gray-400 text-lg">
             Powered by industry leaders
           </p>
@@ -680,23 +740,11 @@ const CTASection = () => {
   );
 };
 
-// Terminal Section
-const TerminalSection = () => {
-  return (
-    <section className="py-12 relative z-20 -mt-20">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        <Terminal />
-      </div>
-    </section>
-  );
-};
-
 // Main Home Component
 const Home = () => {
   return (
     <main className="relative">
       <Hero />
-      <TerminalSection />
       <WhyAttend />
       <Domains />
       <Timeline />
