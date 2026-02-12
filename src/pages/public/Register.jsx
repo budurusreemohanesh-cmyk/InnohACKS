@@ -333,7 +333,7 @@ const Register = () => {
                 type="submit"
                 size="lg"
                 disabled={isSubmitting}
-                className="w-full btn-gradient py-6 text-lg rounded-xl"
+                className="w-full btn-cyber py-6 text-lg rounded-xl"
               >
                 {isSubmitting ? (
                   <span className="flex items-center gap-2">
@@ -342,7 +342,7 @@ const Register = () => {
                   </span>
                 ) : (
                   <span className="flex items-center gap-2">
-                    Complete Registration
+                    COMPLETE REGISTRATION
                     <ArrowRight className="w-5 h-5" />
                   </span>
                 )}

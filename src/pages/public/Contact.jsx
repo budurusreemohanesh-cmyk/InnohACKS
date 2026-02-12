@@ -87,10 +87,10 @@ const Contact = () => {
           animate={{ opacity: 1, y: 0 }}
           className="text-center mb-16"
         >
-          <h1 className="text-5xl sm:text-6xl font-bold mb-6">
-            Contact <span className="text-gradient">Us</span>
+          <h1 className="text-5xl sm:text-6xl font-bold mb-6 font-heading">
+            CONTACT <span className="text-gradient">US</span>
           </h1>
-          <p className="text-xl text-gray-400 max-w-2xl mx-auto">
+          <p className="text-xl text-gray-400 max-w-2xl mx-auto font-body">
             Have questions? We'd love to hear from you. Send us a message and we'll respond as soon as possible.
           </p>
         </motion.div>
@@ -103,8 +103,8 @@ const Contact = () => {
             transition={{ delay: 0.2 }}
             className="lg:col-span-2"
           >
-            <div className="card-glass p-8">
-              <h2 className="text-2xl font-semibold text-white mb-6">Send us a Message</h2>
+            <div className="card-cyber p-8">
+              <h2 className="text-2xl font-bold text-white mb-6 font-heading">Send us a Message</h2>
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div className="space-y-2">
@@ -116,7 +116,7 @@ const Contact = () => {
                       onChange={handleChange}
                       placeholder="John Doe"
                       required
-                      className="bg-white/5 border-white/10 text-white placeholder:text-gray-500"
+                      className="bg-white/5 border-white/10 text-white placeholder:text-gray-500 focus:border-neon-cyan/50 focus:ring-neon-cyan/20"
                     />
                   </div>
                   <div className="space-y-2">
@@ -129,7 +129,7 @@ const Contact = () => {
                       onChange={handleChange}
                       placeholder="john@example.com"
                       required
-                      className="bg-white/5 border-white/10 text-white placeholder:text-gray-500"
+                      className="bg-white/5 border-white/10 text-white placeholder:text-gray-500 focus:border-neon-cyan/50 focus:ring-neon-cyan/20"
                     />
                   </div>
                 </div>
@@ -140,7 +140,7 @@ const Contact = () => {
                     value={formData.subject}
                     onValueChange={(value) => setFormData(prev => ({ ...prev, subject: value }))}
                   >
-                    <SelectTrigger className="bg-white/5 border-white/10 text-white">
+                    <SelectTrigger className="bg-white/5 border-white/10 text-white focus:ring-neon-cyan/20">
                       <SelectValue placeholder="Select a subject" />
                     </SelectTrigger>
                     <SelectContent className="bg-dark-800 border-white/10">
@@ -164,7 +164,7 @@ const Contact = () => {
                     placeholder="How can we help you?"
                     required
                     rows={6}
-                    className="bg-white/5 border-white/10 text-white placeholder:text-gray-500 resize-none"
+                    className="bg-white/5 border-white/10 text-white placeholder:text-gray-500 resize-none focus:border-neon-cyan/50 focus:ring-neon-cyan/20"
                   />
                 </div>
 
@@ -172,7 +172,7 @@ const Contact = () => {
                   type="submit"
                   size="lg"
                   disabled={isSubmitting}
-                  className="w-full btn-gradient py-6 text-lg rounded-xl"
+                  className="w-full btn-cyber py-6 text-lg rounded-xl"
                 >
                   {isSubmitting ? (
                     <span className="flex items-center gap-2">
@@ -182,7 +182,7 @@ const Contact = () => {
                   ) : (
                     <span className="flex items-center gap-2">
                       <Send className="w-5 h-5" />
-                      Send Message
+                      SEND MESSAGE
                     </span>
                   )}
                 </Button>
@@ -207,13 +207,13 @@ const Contact = () => {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.4 + index * 0.1 }}
-                    className="card-glass p-4 flex items-center gap-4"
+                    className="card-cyber p-4 flex items-center gap-4 hover:border-neon-cyan/50 transition-colors"
                   >
                     <div className="w-12 h-12 rounded-xl bg-neon-cyan/10 flex items-center justify-center flex-shrink-0">
                       <Icon className="w-6 h-6 text-neon-cyan" />
                     </div>
                     <div>
-                      <h3 className="text-sm text-gray-400">{info.title}</h3>
+                      <h3 className="text-sm text-gray-400 font-body">{info.title}</h3>
                       {info.link ? (
                         <a 
                           href={info.link} 
@@ -231,8 +231,8 @@ const Contact = () => {
             </div>
 
             {/* Social Links */}
-            <div className="card-glass p-6">
-              <h3 className="text-lg font-semibold text-white mb-4">Follow Us</h3>
+            <div className="card-cyber p-6">
+              <h3 className="text-lg font-bold text-white mb-4 font-heading">FOLLOW US</h3>
               <div className="flex flex-wrap gap-3">
                 {socialLinks.map((social) => {
                   const Icon = social.icon;
@@ -242,7 +242,7 @@ const Contact = () => {
                       href={social.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="w-10 h-10 rounded-lg bg-white/5 flex items-center justify-center text-gray-400 hover:text-white hover:bg-white/10 transition-colors"
+                      className="w-10 h-10 rounded-lg bg-white/5 flex items-center justify-center text-gray-400 hover:text-white hover:bg-neon-cyan/20 hover:border-neon-cyan/50 border border-transparent transition-all"
                       aria-label={social.name}
                     >
                       <Icon className="w-5 h-5" />
@@ -253,26 +253,30 @@ const Contact = () => {
             </div>
 
             {/* Quick Links */}
-            <div className="card-glass p-6">
-              <h3 className="text-lg font-semibold text-white mb-4">Quick Links</h3>
+            <div className="card-cyber p-6">
+              <h3 className="text-lg font-bold text-white mb-4 font-heading">QUICK LINKS</h3>
               <ul className="space-y-2">
                 <li>
-                  <a href="/faq" className="text-gray-400 hover:text-neon-cyan transition-colors text-sm">
+                  <a href="/faq" className="text-gray-400 hover:text-neon-cyan transition-colors text-sm flex items-center gap-2 group">
+                    <span className="w-1 h-1 rounded-full bg-neon-purple group-hover:bg-neon-cyan transition-colors" />
                     Frequently Asked Questions
                   </a>
                 </li>
                 <li>
-                  <a href="/schedule" className="text-gray-400 hover:text-neon-cyan transition-colors text-sm">
+                  <a href="/schedule" className="text-gray-400 hover:text-neon-cyan transition-colors text-sm flex items-center gap-2 group">
+                     <span className="w-1 h-1 rounded-full bg-neon-purple group-hover:bg-neon-cyan transition-colors" />
                     Event Schedule
                   </a>
                 </li>
                 <li>
-                  <a href="/tracks" className="text-gray-400 hover:text-neon-cyan transition-colors text-sm">
+                  <a href="/tracks" className="text-gray-400 hover:text-neon-cyan transition-colors text-sm flex items-center gap-2 group">
+                     <span className="w-1 h-1 rounded-full bg-neon-purple group-hover:bg-neon-cyan transition-colors" />
                     Hackathon Tracks
                   </a>
                 </li>
                 <li>
-                  <a href="/register" className="text-gray-400 hover:text-neon-cyan transition-colors text-sm">
+                  <a href="/register" className="text-gray-400 hover:text-neon-cyan transition-colors text-sm flex items-center gap-2 group">
+                     <span className="w-1 h-1 rounded-full bg-neon-purple group-hover:bg-neon-cyan transition-colors" />
                     Register Now
                   </a>
                 </li>

@@ -49,23 +49,19 @@ module.exports = {
           ring: "hsl(var(--sidebar-ring))",
         },
         neon: {
-          blue: "#00d4ff",
-          purple: "#a855f7",
-          pink: "#ec4899",
-          cyan: "#06b6d4",
-        },
-        dark: {
-          900: "#0f172a",
-          800: "#1e293b",
-          700: "#334155",
-          600: "#475569",
+          cyan: "#00F5FF",
+          purple: "#7C3AED",
+          highlight: "#22D3EE",
+          blue: "#5B5BFF", // Light Mode Primary
         },
         brand: {
-          red: "#EA4335",
-          blue: "#4285F4",
-          green: "#34A853",
-          yellow: "#FBBC05",
+          red: "#EA4335", // Keeping for legacy/compatibility if needed, but primary focus is neon
         },
+      },
+      fontFamily: {
+        heading: ['"Space Grotesk"', 'sans-serif'],
+        body: ['Inter', 'sans-serif'],
+        mono: ['"JetBrains Mono"', 'monospace'],
       },
       borderRadius: {
         xl: "calc(var(--radius) + 4px)",
@@ -75,10 +71,9 @@ module.exports = {
         xs: "calc(var(--radius) - 6px)",
       },
       boxShadow: {
-        xs: "0 1px 2px 0 rgb(0 0 0 / 0.05)",
-        glow: "0 0 20px rgba(0, 212, 255, 0.5)",
-        "glow-purple": "0 0 20px rgba(168, 85, 247, 0.5)",
-        "glow-pink": "0 0 20px rgba(236, 72, 153, 0.5)",
+        glow: "0 0 20px rgba(0, 245, 255, 0.5)",
+        "glow-purple": "0 0 20px rgba(124, 58, 237, 0.5)",
+        "glow-sm": "0 0 10px rgba(0, 245, 255, 0.3)",
       },
       keyframes: {
         "accordion-down": {
@@ -95,11 +90,11 @@ module.exports = {
         },
         float: {
           "0%, 100%": { transform: "translateY(0)" },
-          "50%": { transform: "translateY(-20px)" },
+          "50%": { transform: "translateY(-10px)" },
         },
         "pulse-glow": {
-          "0%, 100%": { boxShadow: "0 0 20px rgba(0, 212, 255, 0.5)" },
-          "50%": { boxShadow: "0 0 40px rgba(0, 212, 255, 0.8)" },
+          "0%, 100%": { boxShadow: "0 0 15px rgba(0, 245, 255, 0.4)" },
+          "50%": { boxShadow: "0 0 25px rgba(0, 245, 255, 0.7)" },
         },
         shimmer: {
           "0%": { backgroundPosition: "-200% 0" },
@@ -119,9 +114,9 @@ module.exports = {
         "accordion-up": "accordion-up 0.2s ease-out",
         "caret-blink": "caret-blink 1.25s ease-out infinite",
         float: "float 6s ease-in-out infinite",
-        "pulse-glow": "pulse-glow 2s ease-in-out infinite",
-        shimmer: "shimmer 2s linear infinite",
-        "gradient-shift": "gradient-shift 8s ease infinite",
+        "pulse-glow": "pulse-glow 3s ease-in-out infinite",
+        shimmer: "shimmer 2.5s linear infinite",
+        "gradient-shift": "gradient-shift 6s ease infinite",
         "spin-slow": "spin-slow 20s linear infinite",
       },
       backgroundImage: {

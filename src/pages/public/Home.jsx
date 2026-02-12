@@ -19,10 +19,10 @@ const Hero = () => {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
       {/* Background Effects */}
+      <div className="absolute inset-0 hero-glow-overlay pointer-events-none" />
       <div className="absolute inset-0">
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-neon-cyan/20 rounded-full blur-[128px] animate-pulse" />
-        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-neon-purple/20 rounded-full blur-[128px] animate-pulse" style={{ animationDelay: '1s' }} />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-neon-pink/10 rounded-full blur-[150px]" />
+        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-neon-cyan/10 rounded-full blur-[128px] animate-pulse" />
+        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-neon-purple/10 rounded-full blur-[128px] animate-pulse" style={{ animationDelay: '1s' }} />
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
@@ -31,10 +31,10 @@ const Hero = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 mb-8"
+          className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 mb-8 backdrop-blur-sm"
         >
           <Sparkles className="w-4 h-4 text-neon-cyan" />
-          <span className="text-sm text-gray-300">India's Premier Inter-College Hackathon</span>
+          <span className="text-sm text-gray-300 font-mono tracking-wide">INDIA'S PREMIER INTER-COLLEGE HACKATHON</span>
         </motion.div>
 
         {/* Main Title */}
@@ -42,10 +42,11 @@ const Hero = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
-          className="text-5xl sm:text-7xl lg:text-8xl font-bold mb-6"
+          className="text-6xl sm:text-8xl lg:text-9xl font-heading font-bold mb-6 tracking-tighter"
         >
-          <span className="text-gradient">InnoHacks</span>
-          <span className="text-white"> 2.0</span>
+          <span className="text-white">INNO</span>
+          <span className="text-gradient">HACKS</span>
+          <span className="text-transparent bg-clip-text bg-gradient-to-br from-white to-gray-500"> 2.0</span>
         </motion.h1>
 
         {/* Subtitle */}
@@ -53,9 +54,9 @@ const Hero = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4 }}
-          className="text-xl sm:text-2xl text-gray-400 mb-8 max-w-3xl mx-auto"
+          className="text-xl sm:text-2xl text-gray-400 mb-10 max-w-3xl mx-auto font-body"
         >
-          24 Hours of Innovation, Code & Creativity
+          24 Hours of <span className="text-neon-cyan">Innovation</span>, <span className="text-neon-purple">Code</span> & <span className="text-neon-highlight">Creativity</span>
         </motion.p>
 
         {/* Event Details */}
@@ -63,15 +64,15 @@ const Hero = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.5 }}
-          className="flex flex-wrap items-center justify-center gap-4 sm:gap-8 mb-12"
+          className="flex flex-wrap items-center justify-center gap-6 sm:gap-12 mb-12 font-mono"
         >
-          <div className="flex items-center gap-2 text-gray-300">
+          <div className="flex items-center gap-2 text-gray-300 bg-white/5 px-4 py-2 rounded-lg border border-white/10">
             <Calendar className="w-5 h-5 text-neon-cyan" />
-            <span>March 15-16, 2025</span>
+            <span>MARCH 15-16, 2025</span>
           </div>
-          <div className="flex items-center gap-2 text-gray-300">
+          <div className="flex items-center gap-2 text-gray-300 bg-white/5 px-4 py-2 rounded-lg border border-white/10">
             <MapPin className="w-5 h-5 text-neon-purple" />
-            <span>SVCE Tirupati</span>
+            <span>SVCE TIRUPATI</span>
           </div>
         </motion.div>
 
@@ -82,21 +83,17 @@ const Hero = () => {
           transition={{ duration: 0.8, delay: 0.6 }}
           className="flex flex-wrap items-center justify-center gap-8 sm:gap-16 mb-12"
         >
-          <div className="text-center">
-            <div className="text-3xl sm:text-4xl font-bold text-white">500+</div>
-            <div className="text-sm text-gray-400">Hackers</div>
+          <div className="text-center group">
+            <div className="text-3xl sm:text-5xl font-bold text-white mb-1 group-hover:text-neon-cyan transition-colors stats-number">500+</div>
+            <div className="text-sm text-gray-500 uppercase tracking-widest">Hackers</div>
           </div>
-          <div className="text-center">
-            <div className="text-3xl sm:text-4xl font-bold text-gradient">₹3L+</div>
-            <div className="text-sm text-gray-400">Prize Pool</div>
+          <div className="text-center group">
+            <div className="text-3xl sm:text-5xl font-bold text-gradient mb-1 stats-number">₹3L+</div>
+            <div className="text-sm text-gray-500 uppercase tracking-widest">Prize Pool</div>
           </div>
-          <div className="text-center">
-            <div className="text-3xl sm:text-4xl font-bold text-white">24</div>
-            <div className="text-sm text-gray-400">Hours</div>
-          </div>
-          <div className="text-center">
-            <div className="text-3xl sm:text-4xl font-bold text-white">50+</div>
-            <div className="text-sm text-gray-400">Colleges</div>
+          <div className="text-center group">
+            <div className="text-3xl sm:text-5xl font-bold text-white mb-1 group-hover:text-neon-purple transition-colors stats-number">24</div>
+            <div className="text-sm text-gray-500 uppercase tracking-widest">Hours</div>
           </div>
         </motion.div>
 
@@ -105,17 +102,17 @@ const Hero = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.8 }}
-          className="flex flex-wrap items-center justify-center gap-4"
+          className="flex flex-wrap items-center justify-center gap-6"
         >
           <Link to="/register">
-            <Button size="lg" className="btn-gradient px-8 py-6 text-lg rounded-xl glow-cyan">
-              Register Now
+            <Button size="lg" className="btn-cyber px-10 py-7 text-lg rounded-xl">
+              REGISTER NOW
               <ArrowRight className="w-5 h-5 ml-2" />
             </Button>
           </Link>
           <Link to="/about">
-            <Button size="lg" variant="outline" className="border-white/20 hover:bg-white/10 px-8 py-6 text-lg rounded-xl">
-              Learn More
+            <Button size="lg" variant="outline" className="border-neon-cyan/30 text-neon-cyan hover:bg-neon-cyan/10 px-10 py-7 text-lg rounded-xl backdrop-blur-sm">
+              LEARN MORE
             </Button>
           </Link>
         </motion.div>
@@ -126,15 +123,15 @@ const Hero = () => {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1.5 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2"
+        className="absolute bottom-10 left-1/2 -translate-x-1/2"
       >
         <motion.div
           animate={{ y: [0, 10, 0] }}
           transition={{ duration: 2, repeat: Infinity }}
           className="flex flex-col items-center gap-2"
         >
-          <span className="text-sm text-gray-500">Scroll to explore</span>
-          <ChevronDown className="w-6 h-6 text-gray-500" />
+          <span className="text-xs text-gray-500 uppercase tracking-widest font-mono">Scroll to Explore</span>
+          <ChevronDown className="w-5 h-5 text-neon-cyan" />
         </motion.div>
       </motion.div>
     </section>
@@ -148,42 +145,46 @@ const WhyAttend = () => {
       icon: Trophy,
       title: '₹3L+ Prize Pool',
       description: 'Compete for cash prizes, gadgets, and exclusive internship opportunities.',
+      color: 'text-neon-highlight'
     },
     {
       icon: Network,
-      title: 'Network with Experts',
+      title: 'Expert Network',
       description: 'Connect with industry leaders, mentors, and fellow innovators.',
+      color: 'text-neon-cyan'
     },
     {
       icon: Lightbulb,
       title: 'Learn & Grow',
       description: 'Attend workshops, tech talks, and hands-on learning sessions.',
+      color: 'text-neon-purple'
     },
     {
       icon: Rocket,
-      title: 'Launch Your Idea',
+      title: 'Launch It',
       description: 'Turn your concepts into working prototypes with expert guidance.',
+      color: 'text-neon-blue'
     },
   ];
 
   return (
-    <section className="py-24 relative">
+    <section className="py-32 relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mb-16"
+          className="text-center mb-20"
         >
-          <h2 className="text-4xl sm:text-5xl font-bold mb-4">
-            Why <span className="text-gradient">Attend?</span>
+          <h2 className="text-4xl sm:text-6xl font-bold mb-6 font-heading">
+            WHY <span className="text-gradient">ATTEND?</span>
           </h2>
-          <p className="text-gray-400 text-lg max-w-2xl mx-auto">
+          <p className="text-gray-400 text-lg max-w-2xl mx-auto font-body">
             Join hundreds of passionate innovators for an unforgettable experience
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {reasons.map((reason, index) => {
             const Icon = reason.icon;
             return (
@@ -193,13 +194,13 @@ const WhyAttend = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
-                className="card-glass p-6 hover-lift group"
+                className="card-cyber p-8 hover-lift group"
               >
-                <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-neon-cyan/20 to-neon-purple/20 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-                  <Icon className="w-7 h-7 text-neon-cyan" />
+                <div className={`w-16 h-16 rounded-2xl bg-white/5 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform ${reason.color} border border-white/10 group-hover:border-neon-cyan/30`}>
+                  <Icon className="w-8 h-8" />
                 </div>
-                <h3 className="text-xl font-semibold text-white mb-2">{reason.title}</h3>
-                <p className="text-gray-400 text-sm">{reason.description}</p>
+                <h3 className="text-xl font-bold text-white mb-3 font-heading uppercase tracking-wide">{reason.title}</h3>
+                <p className="text-gray-400 text-sm leading-relaxed">{reason.description}</p>
               </motion.div>
             );
           })}
@@ -213,62 +214,62 @@ const WhyAttend = () => {
 const Domains = () => {
   const domains = [
     {
-      title: 'AI/ML',
-      description: 'Build intelligent solutions using machine learning and artificial intelligence.',
+      title: 'AI/ML GEN',
+      description: 'Build intelligent solutions using LLMs, Generative AI, and Neural Networks.',
       icon: Zap,
-      color: 'from-neon-cyan to-blue-500',
+      color: 'text-neon-cyan',
     },
     {
-      title: 'Web3 & Blockchain',
+      title: 'WEB3 / DEFI',
       description: 'Create decentralized applications and explore the future of the internet.',
       icon: Code2,
-      color: 'from-neon-purple to-pink-500',
+      color: 'text-neon-purple',
     },
     {
-      title: 'FinTech',
+      title: 'FINTECH',
       description: 'Innovate in financial technology and revolutionize digital payments.',
       icon: Trophy,
-      color: 'from-green-400 to-neon-cyan',
+      color: 'text-neon-highlight',
     },
     {
-      title: 'HealthTech',
+      title: 'HEALTHTECH',
       description: 'Develop solutions for healthcare challenges and patient care.',
       icon: Users,
-      color: 'from-red-400 to-pink-500',
+      color: 'text-neon-blue',
     },
     {
-      title: 'EdTech',
+      title: 'EDTECH',
       description: 'Transform education with innovative learning platforms and tools.',
       icon: Lightbulb,
-      color: 'from-yellow-400 to-orange-500',
+      color: 'text-yellow-400',
     },
     {
-      title: 'Open Innovation',
+      title: 'OPEN INNOVATION',
       description: 'Work on any problem statement that excites you and your team.',
       icon: Rocket,
-      color: 'from-neon-purple to-neon-cyan',
+      color: 'text-pink-500',
     },
   ];
 
   return (
-    <section className="py-24 relative">
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-neon-purple/5 to-transparent" />
+    <section className="py-32 relative">
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-neon-purple/5 to-transparent pointer-events-none" />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mb-16"
+          className="text-center mb-20"
         >
-          <h2 className="text-4xl sm:text-5xl font-bold mb-4">
-            Hackathon <span className="text-gradient">Tracks</span>
+          <h2 className="text-4xl sm:text-6xl font-bold mb-6 font-heading">
+            HACKATHON <span className="text-gradient">TRACKS</span>
           </h2>
-          <p className="text-gray-400 text-lg max-w-2xl mx-auto">
+          <p className="text-gray-400 text-lg max-w-2xl mx-auto font-body">
             Choose from 6 exciting domains and build something amazing
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {domains.map((domain, index) => {
             const Icon = domain.icon;
             return (
@@ -280,13 +281,13 @@ const Domains = () => {
                 transition={{ delay: index * 0.1 }}
                 className="group relative"
               >
-                <div className="absolute inset-0 bg-gradient-to-r opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl blur-xl" style={{ background: `linear-gradient(to right, var(--tw-gradient-stops))` }} />
-                <div className="relative card-glass p-6 h-full">
-                  <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${domain.color} flex items-center justify-center mb-4`}>
-                    <Icon className="w-6 h-6 text-white" />
+                <div className="absolute inset-0 bg-gradient-to-r opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl blur-xl from-neon-cyan/20 to-neon-purple/20" />
+                <div className="relative card-cyber p-8 h-full border border-white/5 hover:border-neon-cyan/50">
+                  <div className={`w-14 h-14 rounded-xl bg-white/5 flex items-center justify-center mb-6 border border-white/10 group-hover:scale-110 transition-transform`}>
+                    <Icon className={`w-7 h-7 ${domain.color}`} />
                   </div>
-                  <h3 className="text-xl font-semibold text-white mb-2">{domain.title}</h3>
-                  <p className="text-gray-400 text-sm">{domain.description}</p>
+                  <h3 className="text-2xl font-bold text-white mb-3 font-heading uppercase tracking-wider">{domain.title}</h3>
+                  <p className="text-gray-400 text-sm leading-relaxed">{domain.description}</p>
                 </div>
               </motion.div>
             );
@@ -298,36 +299,35 @@ const Domains = () => {
 };
 
 // Timeline Section
-// Timeline Section
 const Timeline = () => {
   const [activeDay, setActiveDay] = useState(1);
 
   const days = [
-    { id: 1, label: 'Day 1', date: 'March 15' },
-    { id: 2, label: 'Day 2', date: 'March 16' },
+    { id: 1, label: 'DAY 01', date: 'March 15' },
+    { id: 2, label: 'DAY 02', date: 'March 16' },
   ];
 
   const schedule = {
     1: [
-      { time: '08:00 AM', title: 'Registration & Check-in', description: 'Get your badges, swag kits, and settle in properly.' },
-      { time: '10:00 AM', title: 'Opening Ceremony', description: 'Kickoff with keynote speakers and hackathon rules.' },
-      { time: '11:00 AM', title: 'Hacking Begins!', description: 'Start building! Mentors are available for guidance.' },
-      { time: '02:00 PM', title: 'Lunch Break', description: 'Fuel up with a catered lunch and network with peers.' },
-      { time: '04:00 PM', title: 'Workshop: AI/ML Basics', description: 'Learn the fundamentals of AI/ML integration.' },
-      { time: '08:00 PM', title: 'Dinner & Networking', description: 'Relax, eat, and meet other teams.' },
+      { time: '08:00 AM', title: 'REGISTRATION', description: 'Check-in, badges, and swag kits.' },
+      { time: '10:00 AM', title: 'OPENING CEREMONY', description: 'Keynote speakers and rules.' },
+      { time: '11:00 AM', title: 'HACKING BEGINS', description: 'Start building! Mentors available.' },
+      { time: '02:00 PM', title: 'LUNCH BREAK', description: 'Refuel and network.' },
+      { time: '04:00 PM', title: 'WORKSHOP: AI/ML', description: 'Fundamentals of AI integration.' },
+      { time: '08:00 PM', title: 'DINNER', description: 'Relax, eat, and meet others.' },
     ],
     2: [
-      { time: '12:00 AM', title: 'Midnight Snack', description: 'Late night refreshments to keep you going.' },
-      { time: '08:00 AM', title: 'Breakfast', description: 'Morning energy boost before the final sprint.' },
-      { time: '11:00 AM', title: 'Hacking Ends', description: 'Stop coding. Submission portal opens.' },
-      { time: '12:00 PM', title: 'Project Demos', description: 'Present your solution to the judges.' },
-      { time: '03:00 PM', title: 'Judging', description: 'Final evaluation period.' },
-      { time: '05:00 PM', title: 'Closing Ceremony', description: 'Winners announcement and prize distribution.' },
+      { time: '12:00 AM', title: 'MIDNIGHT SNACK', description: 'Late night refreshments.' },
+      { time: '08:00 AM', title: 'BREAKFAST', description: 'Morning energy boost.' },
+      { time: '11:00 AM', title: 'HACKING ENDS', description: 'Stop coding. Submission opens.' },
+      { time: '12:00 PM', title: 'PROJECT DEMOS', description: 'Present to judges.' },
+      { time: '03:00 PM', title: 'JUDGING', description: 'Final evaluation.' },
+      { time: '05:00 PM', title: 'CLOSING', description: 'Winners announcement.' },
     ]
   };
 
   return (
-    <section className="py-24 relative overflow-hidden">
+    <section className="py-32 relative overflow-hidden">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -335,8 +335,8 @@ const Timeline = () => {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl sm:text-5xl font-bold mb-4">
-            Event <span className="text-gradient">Timeline</span>
+          <h2 className="text-4xl sm:text-6xl font-bold mb-6 font-heading">
+            EVENT <span className="text-gradient">TIMELINE</span>
           </h2>
           <p className="text-gray-400 text-lg">
             Follow the schedule to make the most of your 24 hours
@@ -344,25 +344,18 @@ const Timeline = () => {
         </motion.div>
 
         {/* Day Tabs */}
-        <div className="flex justify-center gap-4 mb-12">
+        <div className="flex justify-center gap-6 mb-16">
           {days.map((day) => (
             <button
               key={day.id}
               onClick={() => setActiveDay(day.id)}
-              className={`relative px-8 py-3 rounded-xl font-semibold transition-all duration-300 ${
+              className={`relative px-8 py-3 rounded-lg font-mono font-bold tracking-widest transition-all duration-300 ${
                 activeDay === day.id
-                  ? 'text-white bg-gradient-to-r from-neon-cyan to-neon-blue shadow-lg shadow-neon-cyan/20'
-                  : 'text-gray-400 hover:text-white bg-white/5 hover:bg-white/10'
+                  ? 'text-black bg-neon-cyan shadow-glow shadow-neon-cyan/50'
+                  : 'text-gray-400 hover:text-white bg-white/5 border border-white/10'
               }`}
             >
-              <span className="relative z-10">{day.label}</span>
-              {activeDay === day.id && (
-                <motion.div
-                  layoutId="activeTab"
-                  className="absolute inset-0 rounded-xl bg-gradient-to-r from-neon-cyan to-neon-blue"
-                  transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
-                />
-              )}
+              {day.label}
             </button>
           ))}
         </div>
@@ -370,7 +363,7 @@ const Timeline = () => {
         {/* Timeline Events */}
         <div className="relative min-h-[600px]">
           {/* Central Line */}
-          <div className="absolute left-4 sm:left-1/2 top-0 bottom-0 w-px bg-white/10 hidden sm:block" />
+          <div className="absolute left-4 sm:left-1/2 top-0 bottom-0 w-1 timeline-line-gradient hidden sm:block rounded-full opacity-50" />
 
           <AnimatePresence mode="wait">
             <motion.div
@@ -379,7 +372,7 @@ const Timeline = () => {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}
               transition={{ duration: 0.3 }}
-              className="space-y-8"
+              className="space-y-12"
             >
               {schedule[activeDay].map((event, index) => (
                 <motion.div
@@ -395,11 +388,11 @@ const Timeline = () => {
                   {/* Content */}
                   <div className={`flex-1 ${index % 2 === 0 ? 'sm:text-right' : 'sm:text-left'} pl-12 sm:pl-0`}>
                     <div className="group relative inline-block text-left sm:text-inherit w-full sm:w-auto">
-                      <div className="card-glass p-6 hover:border-neon-cyan/50 transition-all duration-300 hover:shadow-[0_0_30px_rgba(6,182,212,0.15)] group-hover:-translate-y-1">
-                        <span className="inline-block px-3 py-1 rounded-full bg-neon-cyan/10 text-neon-cyan text-xs font-bold mb-2">
+                      <div className="card-cyber p-6 hover:border-neon-cyan/50 hover:shadow-glow-sm transition-all duration-300 group-hover:-translate-y-1 bg-black/40">
+                        <span className="inline-block px-3 py-1 rounded border border-neon-cyan/30 text-neon-cyan text-xs font-mono mb-3">
                           {event.time}
                         </span>
-                        <h3 className="text-xl font-bold text-white mb-2 group-hover:text-neon-cyan transition-colors">
+                        <h3 className="text-xl font-bold text-white mb-2 font-heading tracking-wide">
                           {event.title}
                         </h3>
                         <p className="text-gray-400 text-sm leading-relaxed">
@@ -410,8 +403,8 @@ const Timeline = () => {
                   </div>
 
                   {/* Dot */}
-                  <div className="absolute left-4 sm:left-1/2 w-4 h-4 bg-dark-900 border-2 border-neon-cyan rounded-full -translate-x-1/2 z-10 shadow-[0_0_10px_rgba(6,182,212,0.5)]">
-                    <div className="absolute inset-0 bg-neon-cyan rounded-full animate-ping opacity-20" />
+                  <div className="absolute left-4 sm:left-1/2 w-4 h-4 bg-black border-2 border-neon-cyan rounded-full -translate-x-1/2 z-10 shadow-[0_0_15px_rgba(0,245,255,0.8)]">
+                    <div className="absolute inset-0 bg-neon-cyan rounded-full animate-ping opacity-40" />
                   </div>
 
                   {/* Empty Space for symmetrical layout */}
@@ -434,18 +427,27 @@ const Prizes = () => {
       prize: '₹1,00,000',
       perks: ['Trophy', 'Certificates', 'Internship Opportunities', 'Cloud Credits'],
       highlight: true,
+      color: 'text-gradient',
+      border: 'border-neon-cyan/50',
+      shadow: 'shadow-glow'
     },
     {
       place: '2nd Place',
       prize: '₹60,000',
       perks: ['Trophy', 'Certificates', 'Goodies', 'Cloud Credits'],
       highlight: false,
+      color: 'text-white',
+      border: 'border-white/10',
+      shadow: ''
     },
     {
       place: '3rd Place',
       prize: '₹40,000',
       perks: ['Trophy', 'Certificates', 'Goodies', 'Cloud Credits'],
       highlight: false,
+      color: 'text-white',
+      border: 'border-white/10',
+      shadow: ''
     },
   ];
 
@@ -458,7 +460,7 @@ const Prizes = () => {
 
   return (
     <section className="py-24 relative">
-      <div className="absolute inset-0 bg-gradient-to-b from-neon-cyan/5 to-transparent" />
+      <div className="absolute inset-0 bg-gradient-to-b from-neon-cyan/5 to-transparent pointer-events-none" />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -466,16 +468,16 @@ const Prizes = () => {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl sm:text-5xl font-bold mb-4">
-            Prize <span className="text-gradient">Pool</span>
+          <h2 className="text-4xl sm:text-6xl font-bold mb-4 font-heading">
+            PRIZE <span className="text-gradient">POOL</span>
           </h2>
-          <p className="text-gray-400 text-lg">
+          <p className="text-gray-400 text-lg font-body">
             Over ₹3,00,000 in prizes and rewards
           </p>
         </motion.div>
 
         {/* Main Prizes */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
             {prizes.map((prize, index) => (
             <motion.div
               key={prize.place}
@@ -485,19 +487,19 @@ const Prizes = () => {
               transition={{ delay: index * 0.1 }}
               className="relative group flex flex-col"
             >
-              <div className={`card-glass p-8 flex-1 transition-all duration-300 hover:scale-105 hover:shadow-2xl ${prize.highlight ? 'border-neon-cyan/50 glow-cyan' : ''}`}>
+              <div className={`card-cyber p-8 flex-1 transition-all duration-300 hover:scale-105 hover:shadow-2xl ${prize.border} ${prize.shadow}`}>
                 <div className="text-center h-full flex flex-col justify-between">
                   <div>
-                    <Trophy className={`w-12 h-12 mx-auto mb-4 ${prize.highlight ? 'text-neon-cyan' : 'text-gray-400'}`} />
-                    <h3 className="text-xl font-semibold text-white mb-2">{prize.place}</h3>
-                    <div className={`text-4xl font-bold mb-4 ${prize.highlight ? 'text-gradient' : 'text-white'}`}>
+                    <Trophy className={`w-16 h-16 mx-auto mb-6 ${prize.highlight ? 'text-neon-cyan drop-shadow-[0_0_15px_rgba(0,245,255,0.5)]' : 'text-gray-500'}`} />
+                    <h3 className="text-2xl font-bold text-white mb-2 font-heading uppercase">{prize.place}</h3>
+                    <div className={`text-5xl font-bold mb-6 font-mono tracking-tighter ${prize.color}`}>
                       {prize.prize}
                     </div>
                   </div>
-                  <ul className="space-y-2">
+                  <ul className="space-y-3 text-left w-full pl-4">
                     {prize.perks.map((perk) => (
-                      <li key={perk} className="text-gray-400 text-sm flex items-center justify-center gap-2">
-                        <Star className="w-4 h-4 text-neon-purple" />
+                      <li key={perk} className="text-gray-300 text-sm flex items-start gap-3">
+                        <Star className="w-4 h-4 text-neon-purple mt-0.5 shrink-0" />
                         {perk}
                       </li>
                     ))}
@@ -513,14 +515,14 @@ const Prizes = () => {
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="card-glass p-8"
+          className="card-cyber p-10 border-neon-purple/30"
         >
-          <h3 className="text-2xl font-semibold text-white mb-6 text-center">Track Prizes</h3>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          <h3 className="text-3xl font-bold text-white mb-8 text-center font-heading">TRACK PRIZES</h3>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {trackPrizes.map((track) => (
-              <div key={track.track} className="bg-white/5 rounded-xl p-4 text-center transition-all duration-300 hover:scale-105 hover:bg-white/10 cursor-pointer">
-                <div className="text-neon-cyan font-bold text-xl">{track.prize}</div>
-                <div className="text-gray-400 text-sm">{track.track}</div>
+              <div key={track.track} className="bg-white/5 rounded-xl p-6 text-center transition-all duration-300 hover:scale-105 hover:bg-white/10 hover:border-neon-cyan/30 border border-transparent cursor-pointer group">
+                <div className="text-neon-cyan font-bold text-2xl mb-2 font-mono group-hover:text-neon-highlight transition-colors">{track.prize}</div>
+                <div className="text-gray-400 text-sm uppercase tracking-wide group-hover:text-white transition-colors">{track.track}</div>
               </div>
             ))}
           </div>
@@ -559,8 +561,8 @@ const Sponsors = () => {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h1 className="text-5xl md:text-7xl font-bold mb-6">
-          <span className="text-gradient-brand">InnoHacks 2.0</span>
+          <h1 className="text-5xl md:text-7xl font-bold mb-6 font-heading tracking-tight">
+          <span className="text-gradient">InnoHacks 2.0</span>
         </h1>
           <p className="text-gray-400 text-lg">
             Powered by industry leaders
@@ -568,8 +570,8 @@ const Sponsors = () => {
         </motion.div>
 
         {/* Platinum */}
-        <div className="mb-12">
-          <h3 className="text-center text-neon-cyan font-semibold mb-6">Platinum Sponsors</h3>
+        <div className="mb-16">
+          <h3 className="text-center text-neon-cyan font-bold mb-8 uppercase tracking-widest text-sm">Platinum Sponsors</h3>
           <div className="flex flex-wrap justify-center gap-8">
             {sponsors.platinum.map((sponsor) => (
               <motion.div
@@ -577,17 +579,17 @@ const Sponsors = () => {
                 initial={{ opacity: 0, scale: 0.9 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
-                className="w-48 h-24 card-glass flex items-center justify-center glow-cyan"
+                className="w-64 h-32 card-cyber flex items-center justify-center hover:shadow-glow-purple group"
               >
-                <span className="text-2xl font-bold text-gradient">{sponsor.logo}</span>
+                <span className="text-4xl font-bold text-white group-hover:text-neon-cyan transition-colors">{sponsor.logo}</span>
               </motion.div>
             ))}
           </div>
         </div>
 
         {/* Gold */}
-        <div className="mb-12">
-          <h3 className="text-center text-yellow-400 font-semibold mb-6">Gold Sponsors</h3>
+        <div className="mb-16">
+          <h3 className="text-center text-yellow-400 font-bold mb-8 uppercase tracking-widest text-sm">Gold Sponsors</h3>
           <div className="flex flex-wrap justify-center gap-6">
             {sponsors.gold.map((sponsor) => (
               <motion.div
@@ -595,9 +597,9 @@ const Sponsors = () => {
                 initial={{ opacity: 0, scale: 0.9 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
-                className="w-40 h-20 card-glass flex items-center justify-center"
+                className="w-48 h-24 card-cyber flex items-center justify-center hover:border-yellow-400/50"
               >
-                <span className="text-xl font-bold text-white">{sponsor.logo}</span>
+                <span className="text-2xl font-bold text-gray-300">{sponsor.logo}</span>
               </motion.div>
             ))}
           </div>
@@ -605,7 +607,7 @@ const Sponsors = () => {
 
         {/* Silver */}
         <div>
-          <h3 className="text-center text-gray-400 font-semibold mb-6">Silver Sponsors</h3>
+          <h3 className="text-center text-gray-500 font-bold mb-8 uppercase tracking-widest text-sm">Silver Sponsors</h3>
           <div className="flex flex-wrap justify-center gap-4">
             {sponsors.silver.map((sponsor) => (
               <motion.div
@@ -613,9 +615,9 @@ const Sponsors = () => {
                 initial={{ opacity: 0, scale: 0.9 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
-                className="w-32 h-16 bg-white/5 rounded-lg flex items-center justify-center"
+                className="w-32 h-16 bg-white/5 rounded-lg flex items-center justify-center border border-white/5 hover:bg-white/10 hover:border-white/20 transition-all"
               >
-                <span className="text-lg font-semibold text-gray-400">{sponsor.logo}</span>
+                <span className="text-lg font-semibold text-gray-500">{sponsor.logo}</span>
               </motion.div>
             ))}
           </div>
@@ -663,8 +665,8 @@ const FAQ = () => {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl sm:text-5xl font-bold mb-4">
-            Frequently Asked <span className="text-gradient">Questions</span>
+          <h2 className="text-4xl sm:text-5xl font-bold mb-4 font-heading">
+            FREQUENTLY ASKED <span className="text-gradient">QUESTIONS</span>
           </h2>
           <p className="text-gray-400 text-lg">
             Got questions? We've got answers
@@ -681,12 +683,12 @@ const FAQ = () => {
               <AccordionItem 
                 key={index} 
                 value={`item-${index}`}
-                className="card-glass border-none px-6"
+                className="card-cyber border-none px-6"
               >
-                <AccordionTrigger className="text-white hover:text-neon-cyan text-left">
+                <AccordionTrigger className="text-white hover:text-neon-cyan text-left font-heading text-lg">
                   {faq.question}
                 </AccordionTrigger>
-                <AccordionContent className="text-gray-400">
+                <AccordionContent className="text-gray-400 leading-relaxed">
                   {faq.answer}
                 </AccordionContent>
               </AccordionItem>
@@ -702,8 +704,8 @@ const FAQ = () => {
 const CTASection = () => {
   return (
     <section className="py-24 relative overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-r from-neon-cyan/10 to-neon-purple/10" />
-      <div className="absolute inset-0">
+      <div className="absolute inset-0 bg-gradient-to-r from-neon-cyan/10 to-neon-purple/10 pointer-events-none" />
+      <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-0 left-1/4 w-96 h-96 bg-neon-cyan/20 rounded-full blur-[128px]" />
         <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-neon-purple/20 rounded-full blur-[128px]" />
       </div>
@@ -714,23 +716,23 @@ const CTASection = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
         >
-          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6">
-            Ready to <span className="text-gradient">Hack?</span>
+          <h2 className="text-5xl sm:text-7xl lg:text-8xl font-bold mb-6 font-heading tracking-tighter">
+            READY TO <span className="text-gradient">HACK?</span>
           </h2>
-          <p className="text-xl text-gray-400 mb-8 max-w-2xl mx-auto">
+          <p className="text-xl text-gray-400 mb-10 max-w-2xl mx-auto font-body">
             Join 500+ innovators for 24 hours of coding, creativity, and collaboration. 
             Register now and secure your spot!
           </p>
-          <div className="flex flex-wrap items-center justify-center gap-4">
+          <div className="flex flex-wrap items-center justify-center gap-6">
             <Link to="/register">
-              <Button size="lg" className="btn-gradient px-8 py-6 text-lg rounded-xl glow-cyan">
-                Register Now
+              <Button size="lg" className="btn-cyber px-10 py-7 text-lg rounded-xl">
+                REGISTER NOW
                 <ArrowRight className="w-5 h-5 ml-2" />
               </Button>
             </Link>
             <Link to="/contact">
-              <Button size="lg" variant="outline" className="border-white/20 hover:bg-white/10 px-8 py-6 text-lg rounded-xl">
-                Contact Us
+              <Button size="lg" variant="outline" className="border-neon-cyan/30 text-neon-cyan hover:bg-neon-cyan/10 px-10 py-7 text-lg rounded-xl backdrop-blur-sm">
+                CONTACT US
               </Button>
             </Link>
           </div>
